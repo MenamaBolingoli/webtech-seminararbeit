@@ -1,0 +1,18 @@
+[
+  {
+    "id": "test-01",
+    "topic": "Spike",
+    "question": "Testkarte 1: Wenn du das liest, hat fetch funktioniert.",
+    "answer": "Platzhalter, wird durch echte Karten ersetzt.",
+    "image": "img/test.svg",
+    "imageAlt": "Einfaches Testbild: ein Kreis",
+    "source": "Platzhalter"
+  },
+  {
+    "id": "test-02",
+    "topic": "Spike",
+    "question": "Testkarte 2: ohne Bild.",
+    "answer": "Platzhalter.",
+    "source": "Platzhalter"
+  }
+]
