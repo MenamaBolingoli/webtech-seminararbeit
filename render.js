@@ -1,4 +1,4 @@
-// Erzeugt das DOM. Nur createElement, textContent, append und after, kein innerHTML.
+// Erzeugt das DOM. Nur createElement, textContent, append, after und replaceChildren, kein innerHTML.
 // Dadurch wird Text aus cards.json immer als Text dargestellt und nie als HTML interpretiert.
 
 export function renderCard(container, card) {
@@ -66,6 +66,67 @@ export function renderProgress(element, index, total, correct) {
   element.textContent = `Karte ${index + 1} von ${total} · ${correct} richtig`;
 }
 
+export function renderBar(fill, done, total) {
+  fill.style.width = `${total ? (done / total) * 100 : 0}%`;
+}
+
+export function renderStats(element, correct, answered) {
+  element.textContent = `Richtig: ${correct} · Falsch: ${answered - correct}`;
+}
+
+export function renderTopicFilter(container, topics, activeTopic) {
+  const buttons = ["", ...topics].map((value) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = value === activeTopic ? "chip is-active" : "chip";
+    button.dataset.topic = value;
+    button.textContent = value === "" ? "Alle" : value;
+    return button;
+  });
+
+  container.replaceChildren(...buttons);
+}
+
+export function renderCardList(container, cards) {
+  const items = cards.map((card) => {
+    const item = document.createElement("article");
+    item.className = "list-item";
+
+    const topic = document.createElement("span");
+    topic.className = "list-topic";
+    topic.textContent = card.topic;
+
+    const question = document.createElement("p");
+    question.className = "question";
+    question.textContent = card.question;
+
+    const answer = document.createElement("p");
+    answer.textContent = card.answer;
+
+    item.append(topic, question, answer);
+
+    if (card.image) {
+      const image = document.createElement("p");
+      image.className = "muted";
+      image.textContent = `Bild: ${card.image}`;
+      item.append(image);
+    }
+
+    if (card.source) {
+      const source = document.createElement("a");
+      source.href = card.source;
+      source.target = "_blank";
+      source.rel = "noopener noreferrer";
+      source.textContent = "Quelle öffnen";
+      item.append(source);
+    }
+
+    return item;
+  });
+
+  container.replaceChildren(...items);
+}
+
 export function renderResult(container, correct, total) {
   const section = document.createElement("section");
   section.className = "result";
@@ -104,15 +165,23 @@ export function renderLoadError(container, message) {
   container.replaceChildren(section);
 }
 
-// Ersetzt ein fehlerhaftes Bild durch einen Hinweis mit Wiederholungsknopf, die Karte bleibt benutzbar.
+// Zeigt bei fehlender Grafik den Pfad aus cards.json und die Beschreibung, damit ein falscher Verweis sofort erkennbar ist.
 export function renderImageError(image) {
   image.hidden = true;
 
   const box = document.createElement("div");
   box.className = "image-error";
+  box.setAttribute("role", "alert");
 
-  const text = document.createElement("p");
-  text.textContent = "Das Bild fehlt oder konnte nicht geladen werden.";
+  const title = document.createElement("p");
+  title.className = "image-error-title";
+  title.textContent = "Grafik nicht gefunden";
+
+  const path = document.createElement("p");
+  path.textContent = `Verweis in cards.json: ${image.dataset.src}`;
+
+  const description = document.createElement("p");
+  description.textContent = `Gedacht war: ${image.alt}`;
 
   const retry = document.createElement("button");
   retry.type = "button";
@@ -120,7 +189,7 @@ export function renderImageError(image) {
   retry.dataset.action = "retry-image";
   retry.textContent = "Bild erneut laden";
 
-  box.append(text, retry);
+  box.append(title, path, description, retry);
   image.after(box);
 }
 

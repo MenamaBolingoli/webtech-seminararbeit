@@ -31,7 +31,7 @@
     "topic": "Ereignisse",
     "question": "In welcher Reihenfolge läuft ein Klick durch die Phasen?",
     "answer": "Zuerst Capturing vom Dokument abwärts bis zum Ziel, dann die Target-Phase, danach Bubbling zurück nach oben.",
-    "image": "img/event-phasen.svg",
+    "image": "img/event-phase.svg",
     "imageAlt": "Fünf Ebenen untereinander: window, document, body, div und button. Ein Pfeil nach unten steht für Capturing, ein Pfeil nach oben für Bubbling. Das Ziel button ist hervorgehoben.",
     "source": "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events"
   },

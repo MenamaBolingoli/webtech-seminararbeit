@@ -7,16 +7,39 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="app">
+  <header class="site-header">
     <h1>Lernkarten</h1>
-    <p id="progress" class="progress"></p>
+    <nav class="tabs" aria-label="Ansicht">
+      <button type="button" class="tab is-active" data-view="learn" aria-selected="true">Lernen</button>
+      <button type="button" class="tab" data-view="cards" aria-selected="false">Karten</button>
+    </nav>
+  </header>
 
-    <div id="stage" class="scene"></div>
+  <main class="app">
+    <section id="view-learn" class="learn">
+      <div class="learn-main">
+        <p id="progress" class="progress"></p>
+        <div class="bar" aria-hidden="true"><div id="bar-fill" class="bar-fill"></div></div>
 
-    <div id="actions" class="actions" hidden>
-      <button id="btn-wrong" type="button" class="wrong">Falsch</button>
-      <button id="btn-right" type="button" class="right">Richtig</button>
-    </div>
+        <div id="stage" class="scene"></div>
+
+        <div id="actions" class="actions" hidden>
+          <button id="btn-wrong" type="button" class="wrong">Falsch</button>
+          <button id="btn-right" type="button" class="right">Richtig</button>
+        </div>
+      </div>
+
+      <aside class="side">
+        <p id="stats" class="stats"></p>
+        <h2 class="side-title">Thema</h2>
+        <div id="topic-filter" class="chips"></div>
+      </aside>
+    </section>
+
+    <section id="view-cards" class="cards-view" hidden>
+      <h2>Alle Karten</h2>
+      <div id="card-list" class="card-list"></div>
+    </section>
   </main>
 
   <script type="module" src="script.js"></script>
