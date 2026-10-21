@@ -1,10 +1,17 @@
 import { loadCards } from "./data.js";
-import { renderCard, renderResult, renderProgress, setFlipped } from "./render.js";
+import {
+  renderCard,
+  renderResult,
+  renderProgress,
+  renderLoadError,
+  renderImageError,
+  retryImage,
+  setFlipped,
+} from "./render.js";
 
 const stage = document.getElementById("stage");
 const progress = document.getElementById("progress");
 const actions = document.getElementById("actions");
-const statusEl = document.getElementById("status");
 
 const state = {
   cards: [],
@@ -61,16 +68,51 @@ function restart() {
   show();
 }
 
-stage.addEventListener("click", (event) => {
-  if (event.target.closest("[data-action='restart']")) {
+async function start() {
+  cardElement = null;
+  actions.hidden = true;
+  progress.hidden = false;
+  progress.textContent = "Karten werden geladen …";
+
+  try {
+    state.cards = await loadCards();
     restart();
-    return;
+  } catch (error) {
+    progress.hidden = true;
+    renderLoadError(stage, error.message);
+  }
+}
+
+stage.addEventListener("click", (event) => {
+  const actionElement = event.target.closest("[data-action]");
+
+  switch (actionElement?.dataset.action) {
+    case "restart":
+      restart();
+      return;
+    case "retry-load":
+      start();
+      return;
+    case "retry-image":
+      retryImage(actionElement);
+      return;
   }
 
   if (event.target.closest(".card")) {
     flip();
   }
 });
+
+// Fehler von Bildern bubblen nicht, deshalb wird in der Capture-Phase gehört
+stage.addEventListener(
+  "error",
+  (event) => {
+    if (event.target instanceof HTMLImageElement) {
+      renderImageError(event.target);
+    }
+  },
+  true
+);
 
 document.addEventListener("keydown", (event) => {
   if (event.key !== " " && event.key !== "Enter") {
@@ -88,16 +130,5 @@ document.addEventListener("keydown", (event) => {
 
 document.getElementById("btn-right").addEventListener("click", () => answer(true));
 document.getElementById("btn-wrong").addEventListener("click", () => answer(false));
-
-async function start() {
-  try {
-    state.cards = await loadCards();
-    show();
-  } catch (error) {
-    progress.hidden = true;
-    statusEl.textContent = `Karten konnten nicht geladen werden (${error.message}).`;
-    statusEl.hidden = false;
-  }
-}
 
 start();
