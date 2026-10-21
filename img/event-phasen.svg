@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" font-family="system-ui, sans-serif" role="img">
+  <title>Event-Phasen: Capturing, Target und Bubbling</title>
+  <defs>
+    <marker id="pfeil" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#666"/>
+    </marker>
+  </defs>
+  <g stroke="#666" stroke-width="2" fill="none">
+    <line x1="150" y1="40" x2="150" y2="290" marker-end="url(#pfeil)"/>
+    <line x1="450" y1="290" x2="450" y2="40" marker-end="url(#pfeil)"/>
+  </g>
+  <g font-size="16" fill="#666" font-size-adjust="none">
+    <text x="140" y="170" text-anchor="end">Capturing</text>
+    <text x="460" y="170" text-anchor="start">Bubbling</text>
+  </g>
+  <g font-size="16" text-anchor="middle">
+    <rect x="200" y="30" width="200" height="36" rx="8" fill="#fff7ef" stroke="#e8731c" stroke-width="2"/>
+    <text x="300" y="53" fill="#222">window</text>
+    <rect x="200" y="90" width="200" height="36" rx="8" fill="#fff7ef" stroke="#e8731c" stroke-width="2"/>
+    <text x="300" y="113" fill="#222">document</text>
+    <rect x="200" y="150" width="200" height="36" rx="8" fill="#fff7ef" stroke="#e8731c" stroke-width="2"/>
+    <text x="300" y="173" fill="#222">body</text>
+    <rect x="200" y="210" width="200" height="36" rx="8" fill="#fff7ef" stroke="#e8731c" stroke-width="2"/>
+    <text x="300" y="233" fill="#222">div</text>
+    <rect x="200" y="270" width="200" height="36" rx="8" fill="#e8731c" stroke="#e8731c" stroke-width="2"/>
+    <text x="300" y="293" fill="#fff">button (Ziel)</text>
+  </g>
+</svg>

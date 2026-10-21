@@ -84,6 +84,11 @@ async function start() {
 }
 
 stage.addEventListener("click", (event) => {
+  // Links zur Quelle sollen öffnen, ohne die Karte umzudrehen
+  if (event.target.closest("a")) {
+    return;
+  }
+
   const actionElement = event.target.closest("[data-action]");
 
   switch (actionElement?.dataset.action) {
@@ -120,7 +125,7 @@ document.addEventListener("keydown", (event) => {
   }
 
   // Auf Buttons sollen Leertaste und Enter den Button auslösen, nicht die Karte umdrehen
-  if (event.target.closest("button") || !cardElement) {
+  if (event.target.closest("button, a") || !cardElement) {
     return;
   }
 

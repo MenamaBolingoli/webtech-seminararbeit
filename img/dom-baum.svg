@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" font-family="system-ui, sans-serif" role="img">
+  <title>DOM als Baum</title>
+  <g fill="none" stroke="#999" stroke-width="2">
+    <path d="M300 60 V100"/>
+    <path d="M300 140 L170 180"/>
+    <path d="M300 140 L430 180"/>
+    <path d="M430 220 L395 260"/>
+    <path d="M430 220 L525 260"/>
+  </g>
+  <g font-size="16" text-anchor="middle" fill="#222" stroke="#e8731c" stroke-width="2" fill-opacity="1">
+    <rect x="220" y="20" width="160" height="40" rx="8" fill="#fff7ef"/>
+    <text x="300" y="46" stroke="none">document</text>
+    <rect x="220" y="100" width="160" height="40" rx="8" fill="#fff7ef"/>
+    <text x="300" y="126" stroke="none">html</text>
+    <rect x="110" y="180" width="120" height="40" rx="8" fill="#fff7ef"/>
+    <text x="170" y="206" stroke="none">head</text>
+    <rect x="370" y="180" width="120" height="40" rx="8" fill="#fff7ef"/>
+    <text x="430" y="206" stroke="none">body</text>
+    <rect x="340" y="260" width="110" height="40" rx="8" fill="#fff7ef"/>
+    <text x="395" y="286" stroke="none">h1</text>
+    <rect x="470" y="260" width="110" height="40" rx="8" fill="#fff7ef"/>
+    <text x="525" y="286" stroke="none">p</text>
+  </g>
+  <g font-size="14" text-anchor="middle" fill="#666">
+    <text x="395" y="326">Textknoten</text>
+    <text x="525" y="326">Textknoten</text>
+  </g>
+</svg>

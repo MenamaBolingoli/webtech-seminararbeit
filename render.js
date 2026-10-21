@@ -10,6 +10,10 @@ export function renderCard(container, card) {
   const front = document.createElement("div");
   front.className = "face front";
 
+  const topic = document.createElement("span");
+  topic.className = "topic";
+  topic.textContent = card.topic;
+
   const question = document.createElement("p");
   question.className = "text";
   question.textContent = card.question;
@@ -18,7 +22,7 @@ export function renderCard(container, card) {
   hint.className = "hint";
   hint.textContent = "Tippen oder Leertaste zum Umdrehen";
 
-  front.append(question, hint);
+  front.append(topic, question, hint);
 
   const back = document.createElement("div");
   back.className = "face back";
@@ -36,6 +40,16 @@ export function renderCard(container, card) {
     image.src = card.image;
     image.alt = card.imageAlt ?? "";
     back.append(image);
+  }
+
+  if (card.source) {
+    const source = document.createElement("a");
+    source.className = "source";
+    source.href = card.source;
+    source.target = "_blank";
+    source.rel = "noopener noreferrer";
+    source.textContent = "Quelle öffnen";
+    back.append(source);
   }
 
   element.append(front, back);

@@ -1,16 +1,92 @@
 [
   {
-    "question": "Wie viele Spieler eines Teams stehen gleichzeitig auf dem Feld?",
-    "answer": "5 Spieler"
+    "id": "dom-01",
+    "topic": "DOM-Grundlagen",
+    "question": "Was ist der DOM?",
+    "answer": "Eine Baumstruktur aus Knoten, die der Browser aus dem HTML-Dokument erzeugt. JavaScript kann sie lesen und verändern.",
+    "image": "img/dom-baum.svg",
+    "imageAlt": "Baumdiagramm: Der Knoten document enthält html, darunter head und body. Unter body liegen die Elemente h1 und p, jeweils mit einem Textknoten.",
+    "source": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction"
   },
   {
-    "question": "Wie viele Punkte bringt ein Korb von jenseits der Dreipunktelinie?",
-    "answer": "3 Punkte"
+    "id": "dom-02",
+    "topic": "DOM-Grundlagen",
+    "question": "Welche Arten von Knoten gibt es im DOM?",
+    "answer": "Element-Knoten (z. B. <p>), Textknoten (der Text darin), Kommentarknoten und weitere.",
+    "image": null,
+    "imageAlt": null,
+    "source": "https://developer.mozilla.org/en-US/docs/Web/API/Node"
   },
   {
-    "question": "Wie groß ist der Umfang eines Herren-Basketballs (ungefähr)?",
-    "answer": "Ca. 75 cm",
-    "image": "img/basketball.svg",
-    "imageAlt": "Illustration eines Basketballs"
+    "id": "dom-03",
+    "topic": "Elemente finden",
+    "question": "Was liefert document.querySelector('.card')?",
+    "answer": "Das erste Element im Dokument, das dem CSS-Selektor .card entspricht, oder null, wenn keins passt.",
+    "image": null,
+    "imageAlt": null,
+    "source": "https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector"
+  },
+  {
+    "id": "dom-04",
+    "topic": "Ereignisse",
+    "question": "In welcher Reihenfolge läuft ein Klick durch die Phasen?",
+    "answer": "Zuerst Capturing vom Dokument abwärts bis zum Ziel, dann die Target-Phase, danach Bubbling zurück nach oben.",
+    "image": "img/event-phasen.svg",
+    "imageAlt": "Fünf Ebenen untereinander: window, document, body, div und button. Ein Pfeil nach unten steht für Capturing, ein Pfeil nach oben für Bubbling. Das Ziel button ist hervorgehoben.",
+    "source": "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events"
+  },
+  {
+    "id": "dom-05",
+    "topic": "Ereignisse",
+    "question": "Was bewirkt der dritte Parameter true bei addEventListener?",
+    "answer": "Der Listener reagiert in der Capturing-Phase, also beim Abwärtslauf vom Dokument zum Ziel, statt in der Bubbling-Phase.",
+    "image": null,
+    "imageAlt": null,
+    "source": "https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener"
+  },
+  {
+    "id": "dom-06",
+    "topic": "Sicherheit",
+    "question": "Warum ist textContent sicherer als innerHTML für Benutzertext?",
+    "answer": "textContent fügt den Text als reinen Text ein und parst kein HTML. Mit innerHTML würde eingeschleuster HTML-Code ausgeführt (Cross-Site-Scripting).",
+    "image": "img/textcontent-innerhtml.svg",
+    "imageAlt": "Zwei Vergleichsfelder. Links: textContent zeigt die Eingabe <b>Hallo</b> als Text an. Rechts: innerHTML macht daraus fettes Hallo, der Code wird also ausgeführt.",
+    "source": "https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent"
+  },
+  {
+    "id": "dom-07",
+    "topic": "Elemente erzeugen",
+    "question": "Welche drei Schritte erzeugen ein neues Element und zeigen es an?",
+    "answer": "document.createElement('p') erzeugt den Knoten, textContent setzt den Text, parent.append(p) hängt ihn an einen vorhandenen Elternknoten.",
+    "image": "img/element-erzeugen.svg",
+    "imageAlt": "Drei Schritte von links nach rechts: 1. createElement('p') erzeugt das Element, 2. textContent setzt den Text Hallo, 3. append hängt das Element an den Elternknoten.",
+    "source": "https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement"
+  },
+  {
+    "id": "dom-08",
+    "topic": "Elemente erzeugen",
+    "question": "Was ist der Unterschied zwischen append() und after()?",
+    "answer": "append() fügt den neuen Knoten als letztes Kind in das Element ein, after() als Geschwister direkt nach dem Element.",
+    "image": null,
+    "imageAlt": null,
+    "source": "https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/after"
+  },
+  {
+    "id": "dom-09",
+    "topic": "Module",
+    "question": "Was bewirkt <script type=\"module\">?",
+    "answer": "Die Datei wird als ES-Modul geladen. Import und Export funktionieren, der Code läuft im Strict Mode und wird verzögert ausgeführt.",
+    "image": "img/module-import.svg",
+    "imageAlt": "script.js steht oben und importiert loadCards aus data.js und renderCard aus render.js. Beide Module liegen nebeneinander darunter.",
+    "source": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
+  },
+  {
+    "id": "dom-10",
+    "topic": "Asynchron laden",
+    "question": "Was gibt fetch() zurück, und warum braucht man await?",
+    "answer": "fetch() gibt ein Promise zurück, das mit der HTTP-Antwort erfüllt wird. await wartet darauf, bevor man die Antwort oder ihr JSON weiterverarbeitet.",
+    "image": null,
+    "imageAlt": null,
+    "source": "https://developer.mozilla.org/en-US/docs/Web/API/Window/fetch"
   }
 ]
