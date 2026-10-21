@@ -1,0 +1,16 @@
+[
+  {
+    "question": "Wie viele Spieler eines Teams stehen gleichzeitig auf dem Feld?",
+    "answer": "5 Spieler"
+  },
+  {
+    "question": "Wie viele Punkte bringt ein Korb von jenseits der Dreipunktelinie?",
+    "answer": "3 Punkte"
+  },
+  {
+    "question": "Wie groß ist der Umfang eines Herren-Basketballs (ungefähr)?",
+    "answer": "Ca. 75 cm",
+    "image": "img/basketball.svg",
+    "imageAlt": "Illustration eines Basketballs"
+  }
+]
