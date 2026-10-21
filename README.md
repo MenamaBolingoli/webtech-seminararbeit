@@ -4,8 +4,10 @@ Eine kleine Lernkarten-Webapp ohne Framework und ohne Build-Schritt. Karten lass
 
 ## Starten
 
-- **Im Browser:** `https://stackblitz.com/github/MenamaBolingoli/webtech-seminararbeit-kigenerierte-website`
-- **Lokal:** Das Projekt über einen Webserver öffnen, nicht per Doppelklick auf `index.html`. Die Karten werden per `fetch` geladen, und das funktioniert über `file://` nicht.
+- **Im Browser:** `https://stackblitz.com/github/MenamaBolingoli/webtech-seminararbeit-kigenerierte-website` öffnen. StackBlitz startet den Server automatisch über `npm start`.
+- **Lokal:** `npm start` ausführen und `http://localhost:3000` öffnen. Nicht per Doppelklick auf `index.html` öffnen, weil die Karten per `fetch` geladen werden und das über `file://` nicht funktioniert.
+
+Der Server (`server.js`) liefert nur die Dateien dieses Ordners aus. Er hat keine Abhängigkeiten und führt keinen Build aus.
 
 ## Aufbau
 
