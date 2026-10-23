@@ -35,3 +35,19 @@ export async function loadCards(url = "cards.json") {
 
   return cards;
 }
+
+// Prüft nach einem fehlgeschlagenen Bildladen, woran es liegt, und liefert eine Ursache als Text.
+export async function checkImage(url) {
+  try {
+    const response = await fetch(url, { method: "HEAD", cache: "no-store" });
+    if (response.status === 404) {
+      return "Die Datei liegt nicht unter diesem Pfad (HTTP 404).";
+    }
+    if (!response.ok) {
+      return `Der Server hat mit HTTP ${response.status} geantwortet.`;
+    }
+    return "Die Datei ist vorhanden, konnte aber nicht angezeigt werden.";
+  } catch {
+    return "Die Datei konnte nicht abgerufen werden (Netzwerkfehler).";
+  }
+}

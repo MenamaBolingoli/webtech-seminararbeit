@@ -145,9 +145,10 @@ body {
   perspective: 1200px;
 }
 
+/* Vorder- und Rückseite liegen im selben Grid-Feld. Die Kartenhöhe richtet sich nach dem höheren Inhalt. */
 .card {
-  position: relative;
-  height: 380px;
+  display: grid;
+  min-height: 380px;
   cursor: pointer;
   outline: none;
   transform-style: preserve-3d;
@@ -165,14 +166,12 @@ body {
 }
 
 .face {
-  position: absolute;
-  inset: 0;
+  grid-area: 1 / 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  gap: 18px;
-  padding: 48px 40px;
+  gap: 16px;
+  padding: 40px;
   border-radius: 20px;
   background: #fff;
   box-shadow: 0 14px 36px rgba(31, 29, 26, 0.1);
@@ -186,10 +185,11 @@ body {
   background: #fffaf5;
 }
 
+.front .text {
+  margin: auto 0;
+}
+
 .topic {
-  position: absolute;
-  top: 22px;
-  left: 28px;
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.06em;
@@ -204,15 +204,12 @@ body {
 }
 
 .hint {
-  position: absolute;
-  bottom: 20px;
   font-size: 0.85rem;
   color: #8a847c;
 }
 
 .source {
-  position: absolute;
-  bottom: 20px;
+  margin-top: auto;
   font-size: 0.88rem;
   color: #b84f1c;
 }
@@ -273,22 +270,28 @@ body {
 
 /* Fehlende Grafik: rot umrandet, damit ein falscher Verweis sofort auffällt */
 .image-error {
-  margin-top: 12px;
-  padding: 16px;
-  border: 2px solid #b3362b;
-  border-radius: 12px;
-  background: #fdf0ee;
-  color: #5c1f18;
+  align-self: stretch;
+  padding: 16px 18px;
+  border: 1px solid #e0a58c;
+  border-left: 4px solid #b3362b;
+  border-radius: 10px;
+  background: #fdf3ef;
+  color: #4a1d16;
   text-align: left;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
 }
 
 .image-error p {
   margin: 0 0 6px;
+  overflow-wrap: anywhere;
 }
 
 .image-error-title {
   font-weight: 700;
+}
+
+.image-error .retry {
+  margin-top: 8px;
 }
 
 .primary,

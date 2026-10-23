@@ -1,4 +1,4 @@
-import { loadCards } from "./data.js";
+import { loadCards, checkImage } from "./data.js";
 import {
   renderCard,
   renderResult,
@@ -150,12 +150,23 @@ stage.addEventListener("click", (event) => {
   }
 });
 
+// Prüft die Datei, bevor der Hinweis erscheint, damit die Ursache im Hinweis steht
+async function handleImageError(image) {
+  if (image.nextElementSibling?.classList.contains("image-error")) {
+    return;
+  }
+
+  const reason = await checkImage(image.dataset.src);
+  console.error(`Grafik ${image.dataset.src} konnte nicht geladen werden: ${reason}`);
+  renderImageError(image, reason);
+}
+
 // Fehler von Bildern bubblen nicht, deshalb wird in der Capture-Phase gehört
 stage.addEventListener(
   "error",
   (event) => {
     if (event.target instanceof HTMLImageElement) {
-      renderImageError(event.target);
+      handleImageError(event.target);
     }
   },
   true

@@ -36,8 +36,8 @@ Die Karten behandeln DOM und JavaScript im Browser. Jede Karte nennt in `source`
 ## Fehlerverhalten
 
 - Fehlt `cards.json` oder ist sie ungültig, erscheint eine Meldung mit „Erneut versuchen“.
-- Fehlt eine Grafik, erscheint eine rot umrandete Meldung mit dem Verweis aus `cards.json` und der Beschreibung der Grafik. Die Karte bleibt bedienbar.
+- Fehlt eine Grafik, prüft die App die Datei per `HEAD`-Anfrage und zeigt Dateipfad, Ursache (z. B. HTTP 404 oder Netzwerkfehler) und die Bildbeschreibung. „Bild erneut laden“ versucht es noch einmal. Die Karte bleibt bedienbar, und die Ursache steht zusätzlich in der Konsole.
 
 ### Absichtlicher Fehler zur Demonstration
 
-Karte `dom-04` verweist auf `img/event-phase.svg`. Die Datei heißt `img/event-phasen.svg`. Beim Umdrehen dieser Karte erscheint deshalb die Fehlermeldung „Grafik nicht gefunden“. Zum Beheben den Pfad in `cards.json` auf `img/event-phasen.svg` ändern.
+Karte `dom-04` verweist auf `img/event-phase.svg`. Die Datei heißt `img/event-phasen.svg`. Beim Umdrehen dieser Karte erscheint deshalb die Meldung „Grafik konnte nicht geladen werden“ mit der Ursache HTTP 404. Zum Beheben den Pfad in `cards.json` auf `img/event-phasen.svg` ändern.

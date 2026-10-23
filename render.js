@@ -165,8 +165,8 @@ export function renderLoadError(container, message) {
   container.replaceChildren(section);
 }
 
-// Zeigt bei fehlender Grafik den Pfad aus cards.json und die Beschreibung, damit ein falscher Verweis sofort erkennbar ist.
-export function renderImageError(image) {
+// Zeigt den Dateipfad, die ermittelte Ursache und die Bildbeschreibung als Ersatz für das Bild.
+export function renderImageError(image, reason) {
   image.hidden = true;
 
   const box = document.createElement("div");
@@ -175,13 +175,21 @@ export function renderImageError(image) {
 
   const title = document.createElement("p");
   title.className = "image-error-title";
-  title.textContent = "Grafik nicht gefunden";
+  title.textContent = "Grafik konnte nicht geladen werden";
 
-  const path = document.createElement("p");
-  path.textContent = `Verweis in cards.json: ${image.dataset.src}`;
+  const file = document.createElement("p");
+  file.textContent = `Datei: ${image.dataset.src}`;
 
-  const description = document.createElement("p");
-  description.textContent = `Gedacht war: ${image.alt}`;
+  const cause = document.createElement("p");
+  cause.textContent = `Ursache: ${reason}`;
+
+  box.append(title, file, cause);
+
+  if (image.alt) {
+    const description = document.createElement("p");
+    description.textContent = `Beschreibung: ${image.alt}`;
+    box.append(description);
+  }
 
   const retry = document.createElement("button");
   retry.type = "button";
@@ -189,7 +197,7 @@ export function renderImageError(image) {
   retry.dataset.action = "retry-image";
   retry.textContent = "Bild erneut laden";
 
-  box.append(title, path, description, retry);
+  box.append(retry);
   image.after(box);
 }
 
